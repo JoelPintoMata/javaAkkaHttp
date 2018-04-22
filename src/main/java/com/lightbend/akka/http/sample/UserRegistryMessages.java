@@ -63,11 +63,16 @@ public interface UserRegistryMessages {
     class SearchTweets implements Serializable {
 
         private final String searchQuery;
-        private final List<String> results;
+        private final int n;
+        private List<String> results;
 
         public SearchTweets(String searchQuery, int n) {
+            this.searchQuery = searchQuery;
+            this.n = n;
+        }
 
-            results = new ArrayList<>(n);
+        public void SearchTweets() {
+            results = new ArrayList<>(this.getN());
             int n_processed=0;
             Twitter twitter = new TwitterFactory().getInstance();
             try {
@@ -76,11 +81,8 @@ public interface UserRegistryMessages {
                 do {
                     result = twitter.search(query);
                     List<Status> tweets = result.getTweets();
-                    for (int i=0; i<tweets.size() && n_processed<=n; i++) {
-                        searchQuery = "@" + n_processed + " : " + tweets.get(i).getUser().getScreenName() + " - " + tweets.get(i).getText();
-                        System.out.println(searchQuery);
-                        System.out.println(tweets.get(i).getText().toUpperCase() + "!");
-                        results.add(tweets.get(i).getText() + "!");
+                    for (int i=0; i<tweets.size() && n_processed<n; i++) {
+                        results.add(tweets.get(i).getText().toUpperCase() + "!");
                         n_processed++;
                     }
                 } while ((query = result.nextQuery()) != null && n_processed<=n);
@@ -90,7 +92,6 @@ public interface UserRegistryMessages {
                 System.out.println("Failed to search tweets: " + te.getMessage());
                 System.exit(-1);
             }
-            this.searchQuery = searchQuery;
         }
 
         public String getTweets() {
@@ -99,6 +100,14 @@ public interface UserRegistryMessages {
 
         public List<String> getResults() {
             return results;
+        }
+
+        public String getSearchQuery() {
+            return searchQuery;
+        }
+
+        public int getN() {
+            return n;
         }
     }
 }

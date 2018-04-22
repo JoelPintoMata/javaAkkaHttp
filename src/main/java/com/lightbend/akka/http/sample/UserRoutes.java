@@ -51,8 +51,8 @@ public class UserRoutes extends AllDirectives {
             route(
                 getOrPostUsers(),
                 path(PathMatchers.segment(), searchQuery -> route(
-                    getUser(searchQuery),
-                    deleteUser(searchQuery)
+//                    getUser(searchQuery)
+//                    ,deleteUser(searchQuery)
                   )
                 )
             )
@@ -107,11 +107,14 @@ public class UserRoutes extends AllDirectives {
         return pathEnd(() ->
             route(
                 get(() -> {
-                    CompletionStage<Optional<List<UserRegistryActor.Users>>> futureUsers = PatternsCS
+                    CompletionStage<Optional<UserRegistryActor.Users>> futureUsers = PatternsCS
                         .ask(userRegistryActor, new UserRegistryMessages.SearchTweets("bibier", 4), timeout)
-                        .thenApply(obj -> (Optional<List<UserRegistryActor.Users>>) obj);
+                        .thenApply(obj -> (Optional<UserRegistryActor.Users>) obj);
                     return onSuccess(() -> futureUsers,
-                        users -> complete(StatusCodes.NOT_FOUND, users, Jackson.marshaller()));
+                        users -> complete(
+                                StatusCodes.OK,
+                                users.get(),
+                                Jackson.marshaller()));
                 })
             )
         );

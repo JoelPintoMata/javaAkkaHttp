@@ -4,7 +4,10 @@ import akka.actor.*;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import akka.japi.Creator;
+import twitter4j.*;
+import twitter4j.Status;
 
+import java.io.Serializable;
 import java.util.*;
 
 public class UserRegistryActor extends AbstractActor {
@@ -66,7 +69,7 @@ public class UserRegistryActor extends AbstractActor {
             return users;
         }
     }
-//#user-case-classes
+    //#user-case-classes
 
     static Props props() {
         return Props.create(UserRegistryActor.class);
@@ -77,9 +80,27 @@ public class UserRegistryActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .match(UserRegistryMessages.SearchTweets.class, searchTweets -> {
+                .match(UserRegistryMessages.GetUsers.class, getUsers ->
+                        getSender().tell(new Users(users), getSelf()))
+                .match(UserRegistryMessages.CreateUser.class, createUser -> {
+                    users.add(createUser.getUser());
+                    getSender().tell(new UserRegistryMessages.ActionPerformed(
+                            String.format("User %s created.", createUser.getUser().getName())), getSelf());
+                })
+                .match(UserRegistryMessages.GetUser.class, getUser -> {
                     getSender().tell(users.stream()
+                            .filter(user -> user.getName().equals(getUser.getName()))
                             .findFirst(), getSelf());
+                })
+                .match(UserRegistryMessages.DeleteUser.class, deleteUser -> {
+                    users.removeIf(user -> user.getName().equals(deleteUser.getName()));
+                    getSender().tell(new UserRegistryMessages.ActionPerformed(String.format("User %s deleted.", deleteUser.getName())),
+                            getSelf());
+                })
+                .match(UserRegistryMessages.SearchTweets.class, st -> {
+                    st.SearchTweets();
+//                    st.getResults().stream().forEach(tweet -> getSender().tell(Optional.of(tweet), getSelf()));
+                            getSender().tell(Optional.of(st.getResults()), getSelf());
                 })
                 .matchAny(o -> log.info("received unknown message"))
                 .build();

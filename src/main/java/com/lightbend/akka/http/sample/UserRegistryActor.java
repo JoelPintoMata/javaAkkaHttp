@@ -99,8 +99,7 @@ public class UserRegistryActor extends AbstractActor {
                 })
                 .match(UserRegistryMessages.SearchTweets.class, st -> {
                     st.SearchTweets();
-//                    st.getResults().stream().forEach(tweet -> getSender().tell(Optional.of(tweet), getSelf()));
-                            getSender().tell(Optional.of(st.getResults()), getSelf());
+                    getSender().tell(Optional.of(st.getResults()), getSelf());
                 })
                 .matchAny(o -> log.info("received unknown message"))
                 .build();

@@ -94,16 +94,8 @@ public interface UserRegistryMessages {
             }
         }
 
-        public String getTweets() {
-            return searchQuery;
-        }
-
         public List<String> getResults() {
             return results;
-        }
-
-        public String getSearchQuery() {
-            return searchQuery;
         }
 
         public int getN() {

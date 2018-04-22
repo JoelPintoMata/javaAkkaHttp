@@ -111,21 +111,8 @@ public class UserRoutes extends AllDirectives {
                         .ask(userRegistryActor, new UserRegistryMessages.SearchTweets("bibier", 4), timeout)
                         .thenApply(obj -> (Optional<List<UserRegistryActor.Users>>) obj);
                     return onSuccess(() -> futureUsers,
-                        users -> complete(StatusCodes.OK, users, Jackson.marshaller()));
-                }),
-                post(() ->
-                    entity(
-                        Jackson.unmarshaller(User.class),
-                        user -> {
-                            CompletionStage<ActionPerformed> userCreated = PatternsCS
-                                .ask(userRegistryActor, new CreateUser(user), timeout)
-                                .thenApply(obj ->(ActionPerformed) obj);
-                            return onSuccess(() -> userCreated,
-                                performed -> {
-                                    log.info("Created user [{}]: {}", user.getName(), performed.getDescription());
-                                    return complete(StatusCodes.CREATED, performed, Jackson.marshaller());
-                                });
-                        }))
+                        users -> complete(StatusCodes.NOT_FOUND, users, Jackson.marshaller()));
+                })
             )
         );
     }

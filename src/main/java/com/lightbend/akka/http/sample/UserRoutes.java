@@ -16,6 +16,9 @@ import com.lightbend.akka.http.sample.UserRegistryMessages.ActionPerformed;
 import com.lightbend.akka.http.sample.UserRegistryMessages.CreateUser;
 import scala.concurrent.duration.Duration;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
@@ -25,10 +28,10 @@ import java.util.concurrent.TimeUnit;
  */
 //#user-routes-class
 public class UserRoutes extends AllDirectives {
+
     //#user-routes-class
     final private ActorRef userRegistryActor;
     final private LoggingAdapter log;
-
 
     public UserRoutes(ActorSystem system, ActorRef userRegistryActor) {
         this.userRegistryActor = userRegistryActor;
@@ -47,9 +50,9 @@ public class UserRoutes extends AllDirectives {
         return route(pathPrefix("users", () ->
             route(
                 getOrPostUsers(),
-                path(PathMatchers.segment(), name -> route(
-                    getUser(name),
-                    deleteUser(name)
+                path(PathMatchers.segment(), searchQuery -> route(
+                    getUser(searchQuery),
+                    deleteUser(searchQuery)
                   )
                 )
             )
@@ -100,12 +103,17 @@ public class UserRoutes extends AllDirectives {
 
     //#users-get-post
     private Route getOrPostUsers() {
+        log.info("Entering getOrPostUsers");
         return pathEnd(() ->
             route(
                 get(() -> {
-                    CompletionStage<UserRegistryActor.Users> futureUsers = PatternsCS
-                        .ask(userRegistryActor, new UserRegistryMessages.GetUsers(), timeout)
-                        .thenApply(obj ->(UserRegistryActor.Users) obj);
+                    CompletionStage<List<UserRegistryActor.Users>> futureUsers = PatternsCS
+                        .ask(userRegistryActor, new UserRegistryMessages.SearchTweets("bibier", 4), timeout)
+                        .thenApply(obj -> (LinkedList<UserRegistryActor.Users>) obj);
+//                    if (obj.isPresent())
+//                        return complete(StatusCodes.OK, obj.get(), Jackson.marshaller());
+//                    else
+//                        return complete(StatusCodes.NOT_FOUND);
                     return onSuccess(() -> futureUsers,
                         users -> complete(StatusCodes.OK, users, Jackson.marshaller()));
                 }),
@@ -125,6 +133,5 @@ public class UserRoutes extends AllDirectives {
             )
         );
     }
-
     //#users-get-post
 }

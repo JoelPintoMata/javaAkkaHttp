@@ -13,6 +13,7 @@ public class UserRegistryActor extends AbstractActor {
 
   //#user-case-classes
   public static class User {
+
     private final String name;
     private final int age;
     private final String countryOfResidence;
@@ -43,6 +44,7 @@ public class UserRegistryActor extends AbstractActor {
   }
 
   public static class Users{
+
     private final List<User> users;
 
     public Users() {
@@ -63,7 +65,7 @@ public class UserRegistryActor extends AbstractActor {
     return Props.create(UserRegistryActor.class);
   }
 
-  private final List<User> users =new ArrayList<>();
+  private final List<User> users = new ArrayList<>();
 
   @Override
   public Receive createReceive(){
@@ -80,11 +82,16 @@ public class UserRegistryActor extends AbstractActor {
                       .findFirst(), getSelf());
             })
             .match(UserRegistryMessages.DeleteUser.class, deleteUser -> {
-              users.removeIf(user -> user.getName().equals(deleteUser.getName()));
-              getSender().tell(new UserRegistryMessages.ActionPerformed(String.format("User %s deleted.", deleteUser.getName())),
-                      getSelf());
-
-            }).matchAny(o -> log.info("received unknown message"))
+                users.removeIf(user -> user.getName().equals(deleteUser.getName()));
+                getSender().tell(new UserRegistryMessages.ActionPerformed(String.format("User %s deleted.", deleteUser.getName())),
+                        getSelf());
+            })
+            .match(UserRegistryMessages.SearchTweets.class, searchTweets -> {
+                getSender().tell(users.stream()
+                        .filter(user -> user.getName().equals(searchTweets.getTweets()))
+                        .findFirst(), getSelf());
+            })
+            .matchAny(o -> log.info("received unknown message"))
             .build();
   }
 }

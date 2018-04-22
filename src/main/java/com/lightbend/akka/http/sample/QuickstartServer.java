@@ -27,8 +27,9 @@ public class QuickstartServer extends AllDirectives {
     //#main-class
 
     public static void main(String[] args) throws Exception {
+
         //#server-bootstrapping
-        // boot up server using the route as defined below
+        // boot up server using themvn  route as defined below
         ActorSystem system = ActorSystem.create("helloAkkaHttpServer");
 
         final Http http = Http.get(system);

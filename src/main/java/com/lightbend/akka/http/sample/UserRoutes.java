@@ -108,7 +108,7 @@ public class UserRoutes extends AllDirectives {
             route(
                 get(() -> {
                     CompletionStage<Optional<UserRegistryActor.Users>> futureUsers = PatternsCS
-                        .ask(userRegistryActor, new UserRegistryMessages.SearchTweets("bibier", 4), timeout)
+                        .ask(userRegistryActor, new UserRegistryMessages.SearchTweets("ggreenwald", 10), timeout)
                         .thenApply(obj -> (Optional<UserRegistryActor.Users>) obj);
                     return onSuccess(() -> futureUsers,
                         users -> complete(

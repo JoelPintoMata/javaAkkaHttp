@@ -62,12 +62,12 @@ public interface UserRegistryMessages {
 
     class SearchTweets implements Serializable {
 
-        private final String searchQuery;
+        private final String username;
         private final int n;
         private List<String> results;
 
         public SearchTweets(String searchQuery, int n) {
-            this.searchQuery = searchQuery;
+            this.username = searchQuery;
             this.n = n;
         }
 
@@ -76,17 +76,26 @@ public interface UserRegistryMessages {
             int n_processed=0;
             Twitter twitter = new TwitterFactory().getInstance();
             try {
-                Query query = new Query(searchQuery);
-                QueryResult result;
+                Query query = new Query(username);
+
+//                QueryResult result;
+                ResponseList<Status> status;
                 do {
-                    result = twitter.search(query);
-                    List<Status> tweets = result.getTweets();
-                    for (int i=0; i<tweets.size() && n_processed<n; i++) {
-                        results.add(tweets.get(i).getText().toUpperCase() + "!");
+                    status = twitter.getUserTimeline(username);
+                    for (int i=0; i<status.size() && n_processed<n; i++) {
+                        System.out.println("@" + n_processed + " : " + status.get(i).getUser().getScreenName() + " - " + status.get(i).getText());
+                        results.add(status.get(i).getText().toUpperCase() + "!");
                         n_processed++;
                     }
-                } while ((query = result.nextQuery()) != null && n_processed<=n);
-//                System.exit(0);
+//                    result = twitter.search(query);
+//                    List<Status> tweets = result.getTweets();
+//                    for (int i=0; i<tweets.size() && n_processed<n; i++) {
+//                        System.out.println("@" + n_processed + " : " + tweets.get(i).getUser().getScreenName() + " - " + tweets.get(i).getText());
+//                        results.add(tweets.get(i).getText().toUpperCase() + "!");
+//                        n_processed++;
+//                    }
+//                } while ((query = result.nextQuery()) != null && n_processed<=n);
+                } while (n_processed<n);
             } catch (TwitterException te) {
                 te.printStackTrace();
                 System.out.println("Failed to search tweets: " + te.getMessage());

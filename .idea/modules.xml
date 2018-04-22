@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/akka-http-quickstart-java.iml" filepath="$PROJECT_DIR$/.idea/modules/akka-http-quickstart-java.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/akka-http-quickstart-java-build.iml" filepath="$PROJECT_DIR$/.idea/modules/akka-http-quickstart-java-build.iml" />
     </modules>
   </component>
 </project>

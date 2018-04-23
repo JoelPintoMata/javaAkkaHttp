@@ -45,13 +45,12 @@ public class UserRoutes extends AllDirectives {
      * This method creates one route (of possibly many more that will be part of your Web App)
      */
     //#all-routes
-    //#users-get-delete
     public Route routes() {
         return route(pathPrefix("searchTweets", () ->
                 route(
-                        path(PathMatchers.segments(), username ->
+                        path(PathMatchers.segments(2), segments ->
                                 route(
-                                    getSearchTweets(username.get(0), username.get(1))
+                                    getSearchTweets(segments.get(0), segments.get(1))
                                 )
                         )
                 )

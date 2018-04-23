@@ -20,18 +20,16 @@ public interface UserRegistryMessages {
         }
 
         public void SearchTweets() {
-            results = new ArrayList<>(this.getN());
+            results = new ArrayList<>(n);
             int n_processed=0;
             Twitter twitter = new TwitterFactory().getInstance();
             try {
-
-//                QueryResult result;
                 ResponseList<Status> status;
                 do {
                     status = twitter.getUserTimeline(username);
                     for (int i=0; i<status.size() && n_processed<n; i++) {
-                        System.out.println("@" + n_processed + " : " + status.get(i).getUser().getScreenName() + " - " + status.get(i).getText());
-                        results.add(status.get(i).getText().toUpperCase() + "!");
+//                        System.out.println("@" + n_processed + " : " + status.get(i).getUser().getScreenName() + " - " + status.get(i).getText());
+                        results.add(format(status.get(i).getText()));
                         n_processed++;
                     }
                 } while (n_processed<n);
@@ -42,12 +40,18 @@ public interface UserRegistryMessages {
             }
         }
 
-        public List<String> getResults() {
-            return results;
+        /**
+         * Formats a tweet test
+         * (uppper case + "!")
+         * @param s a string
+         * @return a formatter tweet test
+         */
+        private String format(String s) {
+            return s.toUpperCase() + "!";
         }
 
-        public int getN() {
-            return n;
+        public List<String> getResults() {
+            return results;
         }
     }
 }

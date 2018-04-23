@@ -21,13 +21,13 @@ import java.util.concurrent.TimeUnit;
  * Routes can be defined in separated classes like shown in here
  */
 //#user-routes-class
-public class UserRoutes extends AllDirectives {
+public class ShoutServiceServerRoutes extends AllDirectives {
 
     //#user-routes-class
     final private ActorRef userRegistryActor;
     final private LoggingAdapter log;
 
-    public UserRoutes(ActorSystem system, ActorRef userRegistryActor) {
+    public ShoutServiceServerRoutes(ActorSystem system, ActorRef userRegistryActor) {
         this.userRegistryActor = userRegistryActor;
         log = Logging.getLogger(system, this);
     }
@@ -40,7 +40,7 @@ public class UserRoutes extends AllDirectives {
      */
     //#all-routes
     public Route routes() {
-        return route(pathPrefix("searchTweets", () ->
+        return route(pathPrefix("shout", () ->
                 route(
                         path(PathMatchers.segments(2), segments ->
                                 route(
@@ -57,9 +57,9 @@ public class UserRoutes extends AllDirectives {
         return
                 //#searchTweets-logic
                 get(() -> {
-                    CompletionStage<Optional<UserRegistryActor.Users>> futureUsers = PatternsCS
-                            .ask(userRegistryActor, new UserRegistryMessages.SearchTweets(username, n), timeout)
-                            .thenApply(obj -> (Optional<UserRegistryActor.Users>) obj);
+                    CompletionStage<Optional<RegistryActor.Users>> futureUsers = PatternsCS
+                            .ask(userRegistryActor, new ShoutServiceRegistryMessages.SearchTweets(username, n), timeout)
+                            .thenApply(obj -> (Optional<RegistryActor.Users>) obj);
                     return onSuccess(() -> futureUsers,
                             searchTweets -> complete(
                                     StatusCodes.OK,

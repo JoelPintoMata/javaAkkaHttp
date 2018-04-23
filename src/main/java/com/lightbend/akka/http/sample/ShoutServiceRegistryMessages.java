@@ -6,7 +6,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface UserRegistryMessages {
+/**
+ * Message registry for the Shout Service
+ */
+public interface ShoutServiceRegistryMessages {
 
     class SearchTweets implements Serializable {
 

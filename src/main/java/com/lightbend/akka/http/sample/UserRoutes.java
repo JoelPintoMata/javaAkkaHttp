@@ -11,14 +11,8 @@ import akka.http.javadsl.server.PathMatchers;
 import akka.http.javadsl.server.Route;
 import akka.pattern.PatternsCS;
 import akka.util.Timeout;
-import com.lightbend.akka.http.sample.UserRegistryActor.User;
-import com.lightbend.akka.http.sample.UserRegistryMessages.ActionPerformed;
-import com.lightbend.akka.http.sample.UserRegistryMessages.CreateUser;
 import scala.concurrent.duration.Duration;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;

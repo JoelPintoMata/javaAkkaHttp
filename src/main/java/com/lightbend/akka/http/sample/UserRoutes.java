@@ -48,65 +48,22 @@ public class UserRoutes extends AllDirectives {
     //#users-get-delete
     public Route routes() {
         return route(pathPrefix("searchTweets", () ->
-                        route(
-                                path(PathMatchers.segment(), username -> route(
-//                    getUser(searchQuery)
-//                    ,deleteUser(searchQuery)
-                                        getSearchTweets(username, 4)
-                                        )
+                route(
+                        path(PathMatchers.segments(), username ->
+                                route(
+                                    getSearchTweets(username.get(0), username.get(1))
                                 )
                         )
+                )
         ));
     }
     //#all-routes
 
-    //#users-get-delete
-
-    //#users-get-delete
-    private Route getUser(String name) {
-        return get(() -> {
-            //#retrieve-user-info
-            CompletionStage<Optional<User>> maybeUser = PatternsCS
-                    .ask(userRegistryActor, new UserRegistryMessages.GetUser(name), timeout)
-                    .thenApply(obj -> (Optional<User>) obj);
-
-            return onSuccess(() -> maybeUser,
-                    performed -> {
-                        if (performed.isPresent())
-                            return complete(StatusCodes.OK, performed.get(), Jackson.marshaller());
-                        else
-                            return complete(StatusCodes.NOT_FOUND);
-                    }
-            );
-            //#retrieve-user-info
-        });
-    }
-
-    private Route deleteUser(String name) {
-        return
-                //#users-delete-logic
-                delete(() -> {
-                    CompletionStage<ActionPerformed> userDeleted = PatternsCS
-                            .ask(userRegistryActor, new UserRegistryMessages.DeleteUser(name), timeout)
-                            .thenApply(obj -> (ActionPerformed) obj);
-
-                    return onSuccess(() -> userDeleted,
-                            performed -> {
-                                log.info("Deleted user [{}]: {}", name, performed.getDescription());
-                                return complete(StatusCodes.OK, performed, Jackson.marshaller());
-                            }
-                    );
-                });
-        //#users-delete-logic
-    }
-    //#users-get-delete
-
     //#searchTweets-get
-    private Route getSearchTweets(String username, int n) {
+    private Route getSearchTweets(String username, String n) {
         return
                 //#searchTweets-logic
                 get(() -> {
-                    System.out.println("username: " + username);
                     CompletionStage<Optional<UserRegistryActor.Users>> futureUsers = PatternsCS
                             .ask(userRegistryActor, new UserRegistryMessages.SearchTweets(username, n), timeout)
                             .thenApply(obj -> (Optional<UserRegistryActor.Users>) obj);
@@ -116,26 +73,7 @@ public class UserRoutes extends AllDirectives {
                                     searchTweets.get(),
                                     Jackson.marshaller()));
                 });
-        //#searchTweets-logic
+                //#searchTweets-logic
     }
     //#searchTweets-get
-
-    //#users-get-post
-    private Route getOrPostUsers() {
-        return pathEnd(() ->
-                route(
-                        get(() -> {
-                            CompletionStage<Optional<UserRegistryActor.Users>> futureUsers = PatternsCS
-                                    .ask(userRegistryActor, new UserRegistryMessages.SearchTweets("ggreenwald", 10), timeout)
-                                    .thenApply(obj -> (Optional<UserRegistryActor.Users>) obj);
-                            return onSuccess(() -> futureUsers,
-                                    users -> complete(
-                                            StatusCodes.OK,
-                                            users.get(),
-                                            Jackson.marshaller()));
-                        })
-                )
-        );
-    }
-    //#users-get-post
 }

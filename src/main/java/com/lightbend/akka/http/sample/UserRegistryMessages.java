@@ -66,9 +66,9 @@ public interface UserRegistryMessages {
         private final int n;
         private List<String> results;
 
-        public SearchTweets(String searchQuery, int n) {
+        public SearchTweets(String searchQuery, String n) {
             this.username = searchQuery;
-            this.n = n;
+            this.n = Integer.parseInt(n);
         }
 
         public void SearchTweets() {
@@ -76,7 +76,6 @@ public interface UserRegistryMessages {
             int n_processed=0;
             Twitter twitter = new TwitterFactory().getInstance();
             try {
-                Query query = new Query(username);
 
 //                QueryResult result;
                 ResponseList<Status> status;

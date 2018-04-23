@@ -1,10 +1,14 @@
 package com.lightbend.akka.http.sample;
 
-import twitter4j.*;
+import com.client.TwitterClient;
+import twitter4j.ResponseList;
+import twitter4j.Status;
+import twitter4j.TwitterException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Message registry for the Shout Service
@@ -15,31 +19,33 @@ public interface ShoutServiceRegistryMessages {
 
         private final String username;
         private final int n;
+        private final TwitterClient twitterClient;
+
         private List<String> results;
 
-        public SearchTweets(String searchQuery, String n) {
+        public SearchTweets(String searchQuery, String n, TwitterClient twitterClient) {
             this.username = searchQuery;
             this.n = Integer.parseInt(n);
+            this.twitterClient = twitterClient;
         }
 
         public void SearchTweets() {
+            ResponseList<Status> status;
+
             results = new ArrayList<>(n);
             int n_processed=0;
-            Twitter twitter = new TwitterFactory().getInstance();
             try {
-                ResponseList<Status> status;
                 do {
-                    status = twitter.getUserTimeline(username);
+                    status = twitterClient.getUserTimeline(username);
                     for (int i=0; i<status.size() && n_processed<n; i++) {
 //                        System.out.println("@" + n_processed + " : " + status.get(i).getUser().getScreenName() + " - " + status.get(i).getText());
-                        results.add(format(status.get(i).getText()));
+                        results.add(status.get(i).getText());
                         n_processed++;
                     }
                 } while (n_processed<n);
             } catch (TwitterException te) {
                 te.printStackTrace();
                 System.out.println("Failed to search tweets: " + te.getMessage());
-                System.exit(-1);
             }
         }
 
@@ -54,7 +60,7 @@ public interface ShoutServiceRegistryMessages {
         }
 
         public List<String> getResults() {
-            return results;
+            return results.stream().map(x -> format(x)).collect(Collectors.toList());
         }
     }
 }

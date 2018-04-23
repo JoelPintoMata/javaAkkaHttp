@@ -5,14 +5,12 @@ package com.lightbend.akka.http.sample;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-
-import akka.http.javadsl.model.*;
+import akka.http.javadsl.model.HttpRequest;
+import akka.http.javadsl.model.StatusCodes;
 import akka.http.javadsl.testkit.JUnitRouteTest;
 import akka.http.javadsl.testkit.TestRoute;
 import org.junit.Before;
 import org.junit.Test;
-import akka.http.javadsl.model.HttpRequest;
-import akka.http.javadsl.model.StatusCodes;
 
 
 //#set-up
@@ -20,45 +18,54 @@ public class UserRoutesTest extends JUnitRouteTest {
     //#test-top
     private TestRoute appRoute;
 
-
+    //#set-up
     @Before
     public void initClass() {
         ActorSystem system = ActorSystem.create("helloAkkaHttpServer");
-        ActorRef userRegistryActor = system.actorOf(UserRegistryActor.props(), "userRegistryActor");
-        QuickstartServer server = new QuickstartServer(system, userRegistryActor);
+        ActorRef userRegistryActor = system.actorOf(RegistryActor.props(), "userRegistryActor");
+        ShoutServiceServer server = new ShoutServiceServer(system, userRegistryActor, new TwitterClient());
         appRoute = testRoute(server.createRoute());
     }
-    //#set-up
-    //#actual-test
+
     @Test
-    public void testNoUsers() {
-        appRoute.run(HttpRequest.GET("/users"))
-                .assertStatusCode(StatusCodes.OK)
-                .assertMediaType("application/json")
-                .assertEntity("{\"users\":[]}");
+    public void testGETNoUsernameNoN() {
+        appRoute.run(HttpRequest.GET("/shout"))
+                .assertStatusCode(StatusCodes.NOT_FOUND)
+                .assertMediaType("text/plain")
+                .assertEntity("The requested resource could not be found.");
     }
+
+    //#actual-test
+    //#testing-put
+    @Test
+    public void testPUTUsernameNoN() {
+        appRoute.run(HttpRequest.PUT("/shout/ggreenwald"))
+                .assertStatusCode(StatusCodes.NOT_FOUND)
+                .assertMediaType("text/plain")
+                .assertEntity("The requested resource could not be found.");
+    }
+    //#testing-put
 
     //#actual-test
     //#testing-post
     @Test
-    public void testHandlePOST() {
-        appRoute.run(HttpRequest.POST("/users")
-                .withEntity(MediaTypes.APPLICATION_JSON.toContentType(),
-                        "{\"name\": \"Kapi\", \"age\": 42, \"countryOfResidence\": \"jp\"}"))
-                .assertStatusCode(StatusCodes.CREATED)
-                .assertMediaType("application/json")
-                .assertEntity("{\"description\":\"User Kapi created.\"}");
+    public void testPOSTNoUsernameNoN() {
+        appRoute.run(HttpRequest.PUT("/shout"))
+                .assertStatusCode(StatusCodes.NOT_FOUND)
+                .assertMediaType("text/plain")
+                .assertEntity("The requested resource could not be found.");
     }
     //#testing-post
 
+    //#actual-test
+    //#testing-delete
     @Test
-    public void testRemove() {
-        appRoute.run(HttpRequest.DELETE("/users/Kapi"))
-                .assertStatusCode(StatusCodes.OK)
-                .assertMediaType("application/json")
-                .assertEntity("{\"description\":\"User Kapi deleted.\"}");
-
+    public void testDELETENoUsernameNoN() {
+        appRoute.run(HttpRequest.PUT("/shout"))
+                .assertStatusCode(StatusCodes.NOT_FOUND)
+                .assertMediaType("text/plain")
+                .assertEntity("The requested resource could not be found.");
     }
-    //#set-up
+    //#testing-delete
 }
 //#set-up

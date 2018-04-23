@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="971eaaa3-8abc-4799-b703-15f484db3389" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/RegistryActor.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServer.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/lightbend/akka/http/sample/SearchTweetTest.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/QuickstartServer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/UserRegistryActor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/UserRegistryMessages.java" afterPath="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceRegistryMessages.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/UserRoutes.java" afterPath="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServerRoutes.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceRegistryMessages.java" afterPath="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceRegistryMessages.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServerRoutes.java" afterPath="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServerRoutes.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/lightbend/akka/http/sample/UserRoutesTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/lightbend/akka/http/sample/UserRoutesTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
@@ -39,8 +40,8 @@
       <file leaf-file-name="RegistryActor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/RegistryActor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+            <state relative-caret-position="293">
+              <caret line="26" column="18" lean-forward="true" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
               <folding>
                 <element signature="e#382#383#0" expanded="true" />
                 <element signature="e#438#439#0" expanded="true" />
@@ -49,17 +50,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShoutServiceRegistryMessages.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ShoutServiceRegistryMessages.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceRegistryMessages.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-374">
-              <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+            <state relative-caret-position="349">
+              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding>
-                <element signature="e#1694#1695#0" expanded="true" />
-                <element signature="e#1746#1747#0" expanded="true" />
-                <element signature="e#1790#1791#0" expanded="true" />
-                <element signature="e#1828#1829#0" expanded="true" />
+                <element signature="e#1859#1860#0" expanded="true" />
+                <element signature="e#1911#1912#0" expanded="true" />
+                <element signature="e#1955#1956#0" expanded="true" />
+                <element signature="e#2051#2052#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShoutServiceServerRoutes.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServerRoutes.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-94">
+              <caret line="46" column="38" lean-forward="false" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -67,28 +78,61 @@
       <file leaf-file-name="ShoutServiceServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="566">
-              <caret line="63" column="39" lean-forward="false" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="39" />
+            <state relative-caret-position="210">
+              <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShoutServiceServerRoutes.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServerRoutes.java">
+      <file leaf-file-name="TwitterClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/client/TwitterClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-104">
-              <caret line="42" column="38" lean-forward="false" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+            <state relative-caret-position="289">
+              <caret line="17" column="22" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+              <folding>
+                <element signature="e#161#162#0" expanded="true" />
+                <element signature="e#221#222#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TimelinesResources.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/twitter4j/twitter4j-core/4.0.6/twitter4j-core-4.0.6-sources.jar!/twitter4j/api/TimelinesResources.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="96" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="String.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/String.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="58" column="67" lean-forward="false" selection-start-line="58" selection-start-column="67" selection-end-line="58" selection-end-column="67" />
+            <state relative-caret-position="145">
+              <caret line="110" column="19" lean-forward="false" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserRoutesTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/lightbend/akka/http/sample/UserRoutesTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="314">
+              <caret line="68" column="21" lean-forward="false" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SearchTweetTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/lightbend/akka/http/sample/SearchTweetTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -130,9 +174,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServerRoutes.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/UserRegistryMessages.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/lightbend/akka/http/sample/UserRoutesTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/TwiterClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/TwitterClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/client/TwitterClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceRegistryMessages.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServerRoutes.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/lightbend/akka/http/sample/SearchTweetTest.java" />
       </list>
     </option>
   </component>
@@ -191,7 +240,55 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="akka-http-quickstart-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="akka-http-quickstart-java" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="akka-http-quickstart-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="akka-http-quickstart-java" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="akka-http-quickstart-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="akka-http-quickstart-java" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="akka-http-quickstart-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="akka-http-quickstart-java" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="akka-http-quickstart-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="akka-http-quickstart-java" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="SearchTweetTest" type="1a9f42e2:ClassTreeNode" />
+            </path>
+            <path>
+              <item name="akka-http-quickstart-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="akka-http-quickstart-java" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="UserRoutesTest" type="1a9f42e2:ClassTreeNode" />
             </path>
           </expand>
           <select />
@@ -207,6 +304,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/com" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -438,7 +536,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524476550554</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="naming conventions fix">
+      <created>1524493359681</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1524493359681</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -504,7 +609,8 @@
     <MESSAGE value="MVP(!)" />
     <MESSAGE value="accepting only a url with 2 parameters &lt;username&gt;/&lt;n&gt;" />
     <MESSAGE value="code cleaning" />
-    <option name="LAST_COMMIT_MESSAGE" value="code cleaning" />
+    <MESSAGE value="naming conventions fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="naming conventions fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -513,51 +619,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/util/concurrent/CompletionStage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="140" column="34" lean-forward="false" selection-start-line="140" selection-start-column="34" selection-end-line="140" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServerRoutes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="61" column="31" lean-forward="true" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceRegistryMessages.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="19" column="16" lean-forward="false" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-          <folding>
-            <element signature="e#1694#1695#0" expanded="true" />
-            <element signature="e#1746#1747#0" expanded="true" />
-            <element signature="e#1790#1791#0" expanded="true" />
-            <element signature="e#1828#1829#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/UserRegistryActor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServerRoutes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="59" column="66" lean-forward="false" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/sample/AkkaQuickstart.java" />
     <entry file="file://$PROJECT_DIR$/build.sbt" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
@@ -649,10 +710,10 @@
         <state relative-caret-position="103">
           <caret line="24" column="5" lean-forward="false" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
           <folding>
-            <element signature="e#1694#1695#0" expanded="true" />
-            <element signature="e#1746#1747#0" expanded="true" />
-            <element signature="e#1790#1791#0" expanded="true" />
-            <element signature="e#1828#1829#0" expanded="true" />
+            <element signature="e#1859#1860#0" expanded="true" />
+            <element signature="e#1911#1912#0" expanded="true" />
+            <element signature="e#1955#1956#0" expanded="true" />
+            <element signature="e#2051#2052#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -807,31 +868,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceRegistryMessages.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-374">
-          <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding>
-            <element signature="e#1694#1695#0" expanded="true" />
-            <element signature="e#1746#1747#0" expanded="true" />
-            <element signature="e#1790#1791#0" expanded="true" />
-            <element signature="e#1828#1829#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="145">
+          <caret line="110" column="19" lean-forward="false" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServer.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/twitter4j/twitter4j-core/4.0.6/twitter4j-core-4.0.6-sources.jar!/twitter4j/api/TimelinesResources.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="63" column="39" lean-forward="false" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="39" />
+        <state relative-caret-position="120">
+          <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="96" selection-end-column="7" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/lightbend/akka/http/sample/UserRoutesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="68" column="21" lean-forward="false" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/client/TwitterClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="22" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+          <folding>
+            <element signature="e#161#162#0" expanded="true" />
+            <element signature="e#221#222#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/RegistryActor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        <state relative-caret-position="293">
+          <caret line="26" column="18" lean-forward="true" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
           <folding>
             <element signature="e#382#383#0" expanded="true" />
             <element signature="e#438#439#0" expanded="true" />
@@ -841,9 +916,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServerRoutes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-104">
-          <caret line="42" column="38" lean-forward="false" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+        <state relative-caret-position="-94">
+          <caret line="46" column="38" lean-forward="false" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/lightbend/akka/http/sample/SearchTweetTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lightbend/akka/http/sample/ShoutServiceRegistryMessages.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="e#1859#1860#0" expanded="true" />
+            <element signature="e#1911#1912#0" expanded="true" />
+            <element signature="e#1955#1956#0" expanded="true" />
+            <element signature="e#2051#2052#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

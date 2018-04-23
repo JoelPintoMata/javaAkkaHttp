@@ -11,6 +11,7 @@ import akka.http.javadsl.server.PathMatchers;
 import akka.http.javadsl.server.Route;
 import akka.pattern.PatternsCS;
 import akka.util.Timeout;
+import com.client.TwitterClient;
 import scala.concurrent.duration.Duration;
 
 import java.util.Optional;
@@ -24,12 +25,15 @@ import java.util.concurrent.TimeUnit;
 public class ShoutServiceServerRoutes extends AllDirectives {
 
     //#user-routes-class
-    final private ActorRef userRegistryActor;
-    final private LoggingAdapter log;
+    private final ActorRef userRegistryActor;
+    private final LoggingAdapter log;
+    private final TwitterClient twitterClient;
 
-    public ShoutServiceServerRoutes(ActorSystem system, ActorRef userRegistryActor) {
-        this.userRegistryActor = userRegistryActor;
+    public ShoutServiceServerRoutes(ActorSystem system, ActorRef userRegistryActor, TwitterClient twitterClient) {
         log = Logging.getLogger(system, this);
+
+        this.userRegistryActor = userRegistryActor;
+        this.twitterClient = twitterClient;
     }
 
     // Required by the `ask` (?) method below
@@ -58,7 +62,7 @@ public class ShoutServiceServerRoutes extends AllDirectives {
                 //#searchTweets-logic
                 get(() -> {
                     CompletionStage<Optional<RegistryActor.Users>> futureUsers = PatternsCS
-                            .ask(userRegistryActor, new ShoutServiceRegistryMessages.SearchTweets(username, n), timeout)
+                            .ask(userRegistryActor, new ShoutServiceRegistryMessages.SearchTweets(username, n, twitterClient), timeout)
                             .thenApply(obj -> (Optional<RegistryActor.Users>) obj);
                     return onSuccess(() -> futureUsers,
                             searchTweets -> complete(

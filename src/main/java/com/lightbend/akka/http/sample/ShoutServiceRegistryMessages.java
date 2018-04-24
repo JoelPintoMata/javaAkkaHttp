@@ -17,11 +17,14 @@ public interface ShoutServiceRegistryMessages {
 
     class SearchTweets implements Serializable {
 
-        private final String username;
-        private final int n;
-        private final TwitterClient twitterClient;
+        private String username;
+        private int n;
+        private TwitterClient twitterClient;
 
         private List<String> results;
+
+        public SearchTweets() {
+        }
 
         public SearchTweets(String searchQuery, String n, TwitterClient twitterClient) {
             this.username = searchQuery;
@@ -60,7 +63,11 @@ public interface ShoutServiceRegistryMessages {
         }
 
         public List<String> getResults() {
-            return results.stream().map(x -> format(x)).collect(Collectors.toList());
+            return this.results.stream().map(x -> format(x)).collect(Collectors.toList());
+        }
+
+        protected void setResults(List<String> results) {
+            this.results = results;
         }
     }
 }

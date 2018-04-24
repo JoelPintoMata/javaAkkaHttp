@@ -1,4 +1,4 @@
-package com.lightbend.akka.http.sample;
+package com.shout;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -11,7 +11,7 @@ import akka.http.javadsl.server.PathMatchers;
 import akka.http.javadsl.server.Route;
 import akka.pattern.PatternsCS;
 import akka.util.Timeout;
-import com.client.TwitterClient;
+import com.shout.client.TwitterClient;
 import scala.concurrent.duration.Duration;
 
 import java.util.Optional;

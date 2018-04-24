@@ -1,4 +1,4 @@
-package com.lightbend.akka.http.sample;
+package com.shout;
 
 import akka.actor.AbstractActor;
 import akka.actor.Props;
@@ -10,9 +10,6 @@ import java.util.Optional;
 public class RegistryActor extends AbstractActor {
 
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
-
-    public static class Users {
-    }
 
     static Props props() {
         return Props.create(RegistryActor.class);
@@ -27,5 +24,8 @@ public class RegistryActor extends AbstractActor {
                 })
                 .matchAny(o -> log.info("received unknown message"))
                 .build();
+    }
+
+    public static class Users {
     }
 }

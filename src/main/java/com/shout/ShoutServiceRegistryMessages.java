@@ -1,6 +1,6 @@
-package com.lightbend.akka.http.sample;
+package com.shout;
 
-import com.client.TwitterClient;
+import com.shout.client.TwitterClient;
 import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.TwitterException;

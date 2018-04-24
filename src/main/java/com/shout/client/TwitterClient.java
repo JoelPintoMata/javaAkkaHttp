@@ -1,4 +1,4 @@
-package com.client;
+package com.shout.client;
 
 import twitter4j.*;
 
@@ -14,7 +14,6 @@ public class TwitterClient {
     }
 
     /**
-     *
      * @param username
      * @return
      * @throws TwitterException

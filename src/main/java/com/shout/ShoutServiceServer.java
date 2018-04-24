@@ -1,4 +1,4 @@
-package com.lightbend.akka.http.sample;
+package com.shout;
 
 import akka.NotUsed;
 import akka.actor.ActorRef;
@@ -12,7 +12,7 @@ import akka.http.javadsl.server.AllDirectives;
 import akka.http.javadsl.server.Route;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
-import com.client.TwitterClient;
+import com.shout.client.TwitterClient;
 
 import java.util.concurrent.CompletionStage;
 

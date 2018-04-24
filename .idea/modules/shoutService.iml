@@ -11,6 +11,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.twitter4j:twitter4j-core:4.0.6" level="project" />
+    <orderEntry type="library" name="Maven: org.twitter4j:twitter4j-async:4.0.6" level="project" />
     <orderEntry type="library" name="Maven: com.typesafe.akka:akka-http_2.12:10.0.11" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.12.4" level="project" />
     <orderEntry type="library" name="Maven: com.typesafe.akka:akka-http-core_2.12:10.0.11" level="project" />
@@ -27,6 +28,7 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.16.20" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.typesafe.akka:akka-http-testkit_2.12:10.0.11" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.typesafe.akka:akka-stream-testkit_2.12:2.4.20" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.typesafe.akka:akka-testkit_2.12:2.4.20" level="project" />

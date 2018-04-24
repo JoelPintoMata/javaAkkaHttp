@@ -1,4 +1,4 @@
-package com.shout;
+package com.shout.model;
 
 import akka.http.javadsl.testkit.JUnitRouteTest;
 import org.junit.Assert;
@@ -18,13 +18,13 @@ public class ShoutServiceRegistryMessagesTest extends JUnitRouteTest {
         list.add("test1");
         list.add("test2");
         list.add("test3");
-        ShoutServiceRegistryMessages.SearchTweets searchTweets = spy(ShoutServiceRegistryMessages.SearchTweets.class);
+        MessageRegistry.SearchTweets searchTweets = spy(MessageRegistry.SearchTweets.class);
         doNothing()
                 .when(searchTweets).SearchTweets();
         searchTweets.setResults(list);
         Assert.assertEquals(searchTweets.getResults().size(), 3);
         Assert.assertEquals(searchTweets.getResults().get(0), "TEST1!");
         Assert.assertEquals(searchTweets.getResults().get(1), "TEST2!");
-        Assert.assertEquals(searchTweets.getResults().get(1), "TEST3!");
+        Assert.assertEquals(searchTweets.getResults().get(2), "TEST3!");
     }
 }

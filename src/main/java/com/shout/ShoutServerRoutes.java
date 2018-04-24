@@ -12,6 +12,7 @@ import akka.http.javadsl.server.Route;
 import akka.pattern.PatternsCS;
 import akka.util.Timeout;
 import com.shout.client.TwitterClient;
+import com.shout.model.MessageRegistry;
 import scala.concurrent.duration.Duration;
 
 import java.util.Optional;
@@ -19,20 +20,20 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Routes can be defined in separated classes like shown in here
+ * Shout service routes
  */
 //#user-routes-class
-public class ShoutServiceServerRoutes extends AllDirectives {
+public class ShoutServerRoutes extends AllDirectives {
 
     //#user-routes-class
-    private final ActorRef userRegistryActor;
+    private final ActorRef actorRef;
     private final LoggingAdapter log;
     private final TwitterClient twitterClient;
 
-    public ShoutServiceServerRoutes(ActorSystem system, ActorRef userRegistryActor, TwitterClient twitterClient) {
+    public ShoutServerRoutes(ActorSystem system, ActorRef actorRef, TwitterClient twitterClient) {
         log = Logging.getLogger(system, this);
 
-        this.userRegistryActor = userRegistryActor;
+        this.actorRef = actorRef;
         this.twitterClient = twitterClient;
     }
 
@@ -61,10 +62,10 @@ public class ShoutServiceServerRoutes extends AllDirectives {
         return
                 //#searchTweets-logic
                 get(() -> {
-                    CompletionStage<Optional<RegistryActor.Users>> futureUsers = PatternsCS
-                            .ask(userRegistryActor, new ShoutServiceRegistryMessages.SearchTweets(username, n, twitterClient), timeout)
-                            .thenApply(obj -> (Optional<RegistryActor.Users>) obj);
-                    return onSuccess(() -> futureUsers,
+                    CompletionStage<Optional<MessageRegistry.SearchTweets>> completionStage = PatternsCS
+                            .ask(actorRef, new MessageRegistry.SearchTweets(username, n, twitterClient), timeout)
+                            .thenApply(obj -> (Optional<MessageRegistry.SearchTweets>) obj);
+                    return onSuccess(() -> completionStage,
                             searchTweets -> complete(
                                     StatusCodes.OK,
                                     searchTweets.get(),

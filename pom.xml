@@ -2,14 +2,19 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.example</groupId>
-    <artifactId>akka-http-seed-java</artifactId>
+    <groupId>com.shout</groupId>
+    <artifactId>shoutService</artifactId>
     <version>1.0</version>
 
     <dependencies>
         <dependency>
             <groupId>org.twitter4j</groupId>
             <artifactId>twitter4j-core</artifactId>
+            <version>4.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.twitter4j</groupId>
+            <artifactId>twitter4j-async</artifactId>
             <version>4.0.6</version>
         </dependency>
         <dependency>
@@ -26,6 +31,12 @@
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-http-jackson_2.12</artifactId>
             <version>10.0.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.20</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.typesafe.akka</groupId>
@@ -62,7 +73,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                    <mainClass>com.lightbend.akka.http.sample.ShoutServiceServer</mainClass>
+                    <mainClass>com.shout.ShoutServer</mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,4 +1,5 @@
-package com.shout;
+package com.letsShout;
+
 
 import akka.NotUsed;
 import akka.actor.ActorRef;
@@ -12,7 +13,7 @@ import akka.http.javadsl.server.AllDirectives;
 import akka.http.javadsl.server.Route;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
-import com.shout.client.TwitterClient;
+import com.letsShout.client.TwitterClient;
 
 import java.util.concurrent.CompletionStage;
 

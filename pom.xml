@@ -33,12 +33,6 @@
             <version>10.0.11</version>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.20</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-http-testkit_2.12</artifactId>
             <version>10.0.11</version>
@@ -73,7 +67,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                    <mainClass>com.shout.ShoutServer</mainClass>
+                    <mainClass>com.letsShout.ShoutServer</mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,11 +1,8 @@
-package com.shout.model;
+package com.letsShout.model;
 
-import com.shout.client.TwitterClient;
-import com.shout.client.TwitterClientCache;
-import lombok.Setter;
+import com.letsShout.client.TwitterClientCache;
 import twitter4j.ResponseList;
 import twitter4j.Status;
-import twitter4j.TwitterException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,17 +19,14 @@ public interface MessageRegistry {
 
         private String username;
         private int n;
-        private TwitterClient twitterClient;
-        @Setter
         private List<String> results;
 
         public SearchTweets() {
         }
 
-        public SearchTweets(String searchQuery, String n, TwitterClient twitterClient) {
+        public SearchTweets(String searchQuery, String n) {
             this.username = searchQuery;
             this.n = Integer.parseInt(n);
-            this.twitterClient = twitterClient;
         }
 
         public void SearchTweets() {
@@ -40,18 +34,13 @@ public interface MessageRegistry {
 
             results = new ArrayList<>(n);
             int n_processed=0;
-            try {
-                do {
-                    status = TwitterClientCache.get(username, n);
-                    for (int i=0; i<status.size() && n_processed<n; i++) {
-                        results.add(status.get(i).getText());
-                        n_processed++;
-                    }
-                } while (n_processed<n);
-            } catch (TwitterException te) {
-                te.printStackTrace();
-                System.out.println("Failed to search tweets: " + te.getMessage());
-            }
+            do {
+                status = TwitterClientCache.get(username, n);
+                for (int i = 0; i < status.size() && n_processed < n; i++) {
+                    results.add(status.get(i).getText());
+                    n_processed++;
+                }
+            } while (n_processed < n);
         }
 
         /**

@@ -1,10 +1,10 @@
-package com.shout;
+package com.letsShout;
 
 import akka.actor.AbstractActor;
 import akka.actor.Props;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
-import com.shout.model.MessageRegistry;
+import com.letsShout.model.MessageRegistry;
 
 import java.util.Optional;
 

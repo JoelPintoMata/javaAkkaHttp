@@ -1,4 +1,4 @@
-package com.shout;
+package com.letsShout;
 
 
 //#test-top
@@ -9,7 +9,7 @@ import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.StatusCodes;
 import akka.http.javadsl.testkit.JUnitRouteTest;
 import akka.http.javadsl.testkit.TestRoute;
-import com.shout.client.TwitterClient;
+import com.letsShout.client.TwitterClient;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,7 +30,7 @@ public class UserRoutesTest extends JUnitRouteTest {
 
     @Test
     public void testGETNoUsernameNoN() {
-        appRoute.run(HttpRequest.GET("/shout"))
+        appRoute.run(HttpRequest.GET("/letsShout"))
                 .assertStatusCode(StatusCodes.NOT_FOUND)
                 .assertMediaType("text/plain")
                 .assertEntity("The requested resource could not be found.");
@@ -40,7 +40,7 @@ public class UserRoutesTest extends JUnitRouteTest {
     //#testing-put
     @Test
     public void testPUTUsernameNoN() {
-        appRoute.run(HttpRequest.PUT("/shout/ggreenwald"))
+        appRoute.run(HttpRequest.PUT("/letsShout/ggreenwald"))
                 .assertStatusCode(StatusCodes.NOT_FOUND)
                 .assertMediaType("text/plain")
                 .assertEntity("The requested resource could not be found.");
@@ -51,7 +51,7 @@ public class UserRoutesTest extends JUnitRouteTest {
     //#testing-post
     @Test
     public void testPOSTNoUsernameNoN() {
-        appRoute.run(HttpRequest.PUT("/shout"))
+        appRoute.run(HttpRequest.PUT("/letsShout"))
                 .assertStatusCode(StatusCodes.NOT_FOUND)
                 .assertMediaType("text/plain")
                 .assertEntity("The requested resource could not be found.");
@@ -62,7 +62,7 @@ public class UserRoutesTest extends JUnitRouteTest {
     //#testing-delete
     @Test
     public void testDELETENoUsernameNoN() {
-        appRoute.run(HttpRequest.PUT("/shout"))
+        appRoute.run(HttpRequest.PUT("/letsShout"))
                 .assertStatusCode(StatusCodes.NOT_FOUND)
                 .assertMediaType("text/plain")
                 .assertEntity("The requested resource could not be found.");

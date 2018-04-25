@@ -1,4 +1,4 @@
-package com.shout.client;
+package com.letsShout.client;
 
 import twitter4j.*;
 

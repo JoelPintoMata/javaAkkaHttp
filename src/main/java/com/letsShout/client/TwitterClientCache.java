@@ -27,25 +27,29 @@ public class TwitterClientCache {
      */
     public static ResponseList<Status> get(String key, int n) {
         CacheElem cacheElem = cache.get(key);
+        ResponseList<Status> responseList = null;
+
         if (cacheElem == null) {
+//            if the cached results are less than what we want we must fectch new results
             if (cacheElem != null && cacheElem.getResponseList().size() < n) {
                 logger.info("key: " + key + " has a shorter local cache, calling the client");
             }
-            ResponseList<Status> responseList;
+
+//            if the cached results are too old we must invalidate the cache and fetch new results
+//            TODO
             try {
                 responseList = twitterClient.getUserTimeline(key);
+                put(key, responseList);
+
+                logger.info("key: " + key + " not found in cache");
             } catch (TwitterException e) {
                 logger.error("Unable to get results");
-                return null;
             }
-            put(key, responseList);
-
-            logger.info("key: " + key + " not found in cache");
-            return responseList;
         } else {
             logger.info("key: " + key + " retrieved from cache");
-            return cacheElem.getResponseList();
+            responseList = cacheElem.getResponseList();
         }
+        return responseList;
     }
 
     /**

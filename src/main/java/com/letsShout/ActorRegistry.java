@@ -22,9 +22,10 @@ public class ActorRegistry extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .match(MessageRegistry.SearchTweets.class, st -> {
-                    st.SearchTweets();
-                    getSender().tell(Optional.of(st.getResults()), getSelf());
+                .match(MessageRegistry.SearchTweets.class, x -> {
+                    log.info("received message type: ", MessageRegistry.SearchTweets.class.getName());
+                    x.SearchTweets();
+                    getSender().tell(Optional.of(x.getResults()), getSelf());
                 })
                 .matchAny(o -> log.info("received unknown message"))
                 .build();

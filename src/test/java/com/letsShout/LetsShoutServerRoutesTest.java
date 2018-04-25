@@ -1,29 +1,27 @@
 package com.letsShout;
 
-
-//#test-top
-
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.StatusCodes;
 import akka.http.javadsl.testkit.JUnitRouteTest;
 import akka.http.javadsl.testkit.TestRoute;
+import com.letsShout.client.TwitterClient;
+import com.letsShout.client.TwitterClientCache;
 import org.junit.Before;
 import org.junit.Test;
 
+public class LetsShoutServerRoutesTest extends JUnitRouteTest {
 
-//#set-up
-public class UserRoutesTest extends JUnitRouteTest {
-    //#test-top
     private TestRoute appRoute;
 
-    //#set-up
     @Before
     public void initClass() {
         ActorSystem system = ActorSystem.create("letsShoutServer");
         ActorRef actorRef = system.actorOf(ActorRegistry.props(), "actorRegistry");
-        LetsShoutServer server = new LetsShoutServer(system, actorRef);
+        TwitterClient twitterClient = new TwitterClient();
+        TwitterClientCache twitterClientCache = new TwitterClientCache(twitterClient);
+        LetsShoutServer server = new LetsShoutServer(system, actorRef, twitterClientCache);
         appRoute = testRoute(server.createRoute());
     }
 
@@ -35,8 +33,6 @@ public class UserRoutesTest extends JUnitRouteTest {
                 .assertEntity("The requested resource could not be found.");
     }
 
-    //#actual-test
-    //#testing-put
     @Test
     public void testPUTUsernameNoN() {
         appRoute.run(HttpRequest.PUT("/letsShout/ggreenwald"))
@@ -44,10 +40,7 @@ public class UserRoutesTest extends JUnitRouteTest {
                 .assertMediaType("text/plain")
                 .assertEntity("The requested resource could not be found.");
     }
-    //#testing-put
 
-    //#actual-test
-    //#testing-post
     @Test
     public void testPOSTNoUsernameNoN() {
         appRoute.run(HttpRequest.PUT("/letsShout"))
@@ -55,10 +48,7 @@ public class UserRoutesTest extends JUnitRouteTest {
                 .assertMediaType("text/plain")
                 .assertEntity("The requested resource could not be found.");
     }
-    //#testing-post
 
-    //#actual-test
-    //#testing-delete
     @Test
     public void testDELETENoUsernameNoN() {
         appRoute.run(HttpRequest.PUT("/letsShout"))
@@ -66,6 +56,4 @@ public class UserRoutesTest extends JUnitRouteTest {
                 .assertMediaType("text/plain")
                 .assertEntity("The requested resource could not be found.");
     }
-    //#testing-delete
 }
-//#set-up

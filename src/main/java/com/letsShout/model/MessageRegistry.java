@@ -19,14 +19,20 @@ public interface MessageRegistry {
 
         private String username;
         private int n;
+        private TwitterClientCache twitterClientCache;
+
         private List<String> results;
 
+        /**
+         * Default constructor for unit test purposes
+         */
         public SearchTweets() {
         }
 
-        public SearchTweets(String searchQuery, String n) {
+        public SearchTweets(String searchQuery, String n, TwitterClientCache twitterClientCache) {
             this.username = searchQuery;
             this.n = Integer.parseInt(n);
+            this.twitterClientCache = twitterClientCache;
         }
 
         public void SearchTweets() {
@@ -35,7 +41,7 @@ public interface MessageRegistry {
             results = new ArrayList<>(n);
             int n_processed=0;
             do {
-                status = TwitterClientCache.get(username, n);
+                status = twitterClientCache.get(username, n);
                 for (int i = 0; i < status.size() && n_processed < n; i++) {
                     results.add(status.get(i).getText());
                     n_processed++;

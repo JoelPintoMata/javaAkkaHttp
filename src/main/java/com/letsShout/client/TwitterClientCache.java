@@ -14,10 +14,19 @@ import java.util.Map;
  */
 public class TwitterClientCache {
 
-    private static Map<String, CacheElem> cache = new HashMap<>();
-    private static TwitterClient twitterClient = new TwitterClient();
+    private Map<String, CacheElem> cache = new HashMap<>();
+    private TwitterClient twitterClient;
 
-    private static Logger logger = Logger.getLogger(TwitterClientCache.class);
+    private Logger logger = Logger.getLogger(TwitterClientCache.class);
+
+    /**
+     * Default constructor
+     *
+     * @param twitterClient twitter client request cache
+     */
+    public TwitterClientCache(TwitterClient twitterClient) {
+        this.twitterClient = twitterClient;
+    }
 
     /**
      *
@@ -25,7 +34,7 @@ public class TwitterClientCache {
      * @param n the number of elements to retrieve
      * @return the cached element
      */
-    public static ResponseList<Status> get(String key, int n) {
+    public ResponseList<Status> get(String key, int n) {
         CacheElem cacheElem = cache.get(key);
         ResponseList<Status> responseList = null;
 
@@ -58,14 +67,14 @@ public class TwitterClientCache {
      * @param responseList the cached result
      * @return the cached element
      */
-    public static CacheElem put(String key, ResponseList<Status> responseList) {
+    public CacheElem put(String key, ResponseList<Status> responseList) {
         return cache.putIfAbsent(key, new CacheElem(responseList, DateTime.now()));
     }
 
     /**
      * Shout service twitter client request cache element
      */
-    private static class CacheElem {
+    private class CacheElem {
 
         private final ResponseList<Status> responseList;
         private final DateTime dateTime;    // used for cache entry invalidation

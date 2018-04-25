@@ -56,5 +56,9 @@ public interface MessageRegistry {
         public List<String> getResults() {
             return this.results.stream().map(x -> format(x)).collect(Collectors.toList());
         }
+
+        public void setResults(List<String> result) {
+            this.results = result;
+        }
     }
 }

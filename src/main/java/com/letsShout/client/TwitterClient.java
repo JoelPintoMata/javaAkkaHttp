@@ -24,4 +24,13 @@ public class TwitterClient {
     public ResponseList<Status> getUserTimeline(String username) throws TwitterException {
         return twitter.getUserTimeline(username);
     }
+
+    /**
+     * Checks if the client is authorized to access twitter
+     *
+     * @return a boolean with the result of the authorization
+     */
+    public boolean isAuthorized() {
+        return twitter.getAuthorization().isEnabled();
+    }
 }

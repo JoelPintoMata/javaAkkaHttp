@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
  */
 public interface MessageRegistry {
 
+    /**
+     * Search tweets type message and model
+     */
     class SearchTweets implements Serializable {
 
         private String username;

@@ -15,6 +15,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import com.letsShout.client.TwitterClient;
 import com.letsShout.client.TwitterClientCache;
+import twitter4j.Logger;
 
 import java.util.concurrent.CompletionStage;
 
@@ -22,6 +23,8 @@ import java.util.concurrent.CompletionStage;
  * Shout service main class
  */
 public class LetsShoutServer extends AllDirectives {
+
+    private static Logger logger = Logger.getLogger(TwitterClientCache.class);
 
     // set up ActorSystem and other dependencies here
     private final LetsShoutServerRoutes letsShoutServerRoutes;
@@ -41,6 +44,11 @@ public class LetsShoutServer extends AllDirectives {
         ActorRef actorRef = system.actorOf(ActorRegistry.props(), "actorRegistry");
 
         TwitterClient twitterClient = new TwitterClient();
+        if (!twitterClient.isAuthorized()) {
+            logger.error("Cannot start twitter client, check your credentials");
+            System.exit(0);
+        }
+
         TwitterClientCache twitterClientCache = new TwitterClientCache(twitterClient);
 
         //In order to access all directives we need an instance where the routes are define.

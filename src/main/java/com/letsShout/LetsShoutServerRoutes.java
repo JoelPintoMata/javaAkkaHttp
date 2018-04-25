@@ -29,6 +29,7 @@ public class LetsShoutServerRoutes extends AllDirectives {
 
     private final ActorRef actorRef;
     private final TwitterClientCache twitterClientCache;
+
     // Required by the `ask` (?) method below
     Timeout timeout = new Timeout(Duration.create(5, TimeUnit.SECONDS)); // usually we'd obtain the timeout from the system's configuration
 

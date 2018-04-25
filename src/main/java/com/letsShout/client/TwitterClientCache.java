@@ -23,7 +23,7 @@ public class TwitterClientCache {
      *
      * @param key the cache key
      * @param n the number of elements to retrieve
-     * @return the cache elements
+     * @return the cached element
      */
     public static ResponseList<Status> get(String key, int n) {
         CacheElem cacheElem = cache.get(key);
@@ -53,21 +53,22 @@ public class TwitterClientCache {
     }
 
     /**
-     * @param key
-     * @param responseList
-     * @return
+     * Atomically inserts a new cache entry if there's not yet element with a given key
+     * @param key the cache key
+     * @param responseList the cached result
+     * @return the cached element
      */
     public static CacheElem put(String key, ResponseList<Status> responseList) {
         return cache.putIfAbsent(key, new CacheElem(responseList, DateTime.now()));
     }
 
     /**
-     * Twitter cache element
+     * Shout service twitter client request cache element
      */
     private static class CacheElem {
 
         private final ResponseList<Status> responseList;
-        private final DateTime dateTime;
+        private final DateTime dateTime;    // used for cache entry invalidation
 
         public CacheElem(ResponseList<Status> responseList, DateTime dateTime) {
             this.responseList = responseList;

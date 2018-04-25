@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="971eaaa3-8abc-4799-b703-15f484db3389" name="Default" comment="package naming refactoring">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/shoutService.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/shoutService.iml" afterDir="false" />
+    <list default="true" id="971eaaa3-8abc-4799-b703-15f484db3389" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/letsShout/client/TwitterClientCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/letsShout/client/TwitterClientCache.java" afterDir="false" />
     </list>
@@ -74,8 +72,8 @@
       <file leaf-file-name="TwitterClientCache.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/letsShout/client/TwitterClientCache.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+            <state relative-caret-position="116">
+              <caret line="65" column="44" selection-start-line="65" selection-start-column="44" selection-end-line="65" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2022#2023#0" expanded="true" />
@@ -647,11 +645,19 @@
       <option name="project" value="LOCAL" />
       <updated>1524642982626</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="caching refactoring">
+      <created>1524648148685</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1524648148685</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="829" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="8" />
       <window_info anchor="bottom" id="TODO" order="7" />
@@ -712,7 +718,8 @@
     <MESSAGE value="test refactoring" />
     <MESSAGE value="updated documentation" />
     <MESSAGE value="naming refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="naming refactoring" />
+    <MESSAGE value="caching refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="caching refactoring" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -886,8 +893,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/letsShout/client/TwitterClientCache.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+        <state relative-caret-position="116">
+          <caret line="65" column="44" selection-start-line="65" selection-start-column="44" selection-end-line="65" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2022#2023#0" expanded="true" />

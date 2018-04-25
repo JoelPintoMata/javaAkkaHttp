@@ -32,6 +32,13 @@ public interface MessageRegistry {
         public SearchTweets() {
         }
 
+        /**
+         * Constructor
+         *
+         * @param searchQuery        the search query
+         * @param n                  the number of results expected
+         * @param twitterClientCache a twitter client cache instance
+         */
         public SearchTweets(String searchQuery, String n, TwitterClientCache twitterClientCache) {
             this.username = searchQuery;
             this.n = Integer.parseInt(n);

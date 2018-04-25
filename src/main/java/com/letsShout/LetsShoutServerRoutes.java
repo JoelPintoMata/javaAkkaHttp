@@ -11,7 +11,6 @@ import akka.http.javadsl.server.PathMatchers;
 import akka.http.javadsl.server.Route;
 import akka.pattern.PatternsCS;
 import akka.util.Timeout;
-import com.letsShout.client.TwitterClient;
 import com.letsShout.model.MessageRegistry;
 import scala.concurrent.duration.Duration;
 
@@ -24,13 +23,13 @@ import java.util.concurrent.TimeUnit;
  * Shout service routes
  */
 //#user-routes-class
-public class ShoutServerRoutes extends AllDirectives {
+public class LetsShoutServerRoutes extends AllDirectives {
 
     //#user-routes-class
     private final ActorRef actorRef;
     private final LoggingAdapter log;
 
-    public ShoutServerRoutes(ActorSystem system, ActorRef actorRef, TwitterClient twitterClient) {
+    public LetsShoutServerRoutes(ActorSystem system, ActorRef actorRef) {
         log = Logging.getLogger(system, this);
 
         this.actorRef = actorRef;

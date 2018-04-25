@@ -9,7 +9,6 @@ import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.StatusCodes;
 import akka.http.javadsl.testkit.JUnitRouteTest;
 import akka.http.javadsl.testkit.TestRoute;
-import com.letsShout.client.TwitterClient;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,9 +21,9 @@ public class UserRoutesTest extends JUnitRouteTest {
     //#set-up
     @Before
     public void initClass() {
-        ActorSystem system = ActorSystem.create("helloAkkaHttpServer");
-        ActorRef userRegistryActor = system.actorOf(ActorRegistry.props(), "userRegistryActor");
-        ShoutServer server = new ShoutServer(system, userRegistryActor, new TwitterClient());
+        ActorSystem system = ActorSystem.create("letsShoutServer");
+        ActorRef actorRef = system.actorOf(ActorRegistry.props(), "actorRegistry");
+        LetsShoutServer server = new LetsShoutServer(system, actorRef);
         appRoute = testRoute(server.createRoute());
     }
 

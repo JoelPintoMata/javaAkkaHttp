@@ -13,7 +13,6 @@ import akka.http.javadsl.server.AllDirectives;
 import akka.http.javadsl.server.Route;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
-import com.letsShout.client.TwitterClient;
 
 import java.util.concurrent.CompletionStage;
 
@@ -21,13 +20,13 @@ import java.util.concurrent.CompletionStage;
  * Shout service main class
  */
 //#main-class
-public class ShoutServer extends AllDirectives {
+public class LetsShoutServer extends AllDirectives {
 
     // set up ActorSystem and other dependencies here
-    private final ShoutServerRoutes shoutServerRoutes;
+    private final LetsShoutServerRoutes letsShoutServerRoutes;
 
-    public ShoutServer(ActorSystem system, ActorRef actorRegistry, TwitterClient twitterClient) {
-        shoutServerRoutes = new ShoutServerRoutes(system, actorRegistry, twitterClient);
+    public LetsShoutServer(ActorSystem system, ActorRef actorRegistry) {
+        letsShoutServerRoutes = new LetsShoutServerRoutes(system, actorRegistry);
     }
     //#main-class
 
@@ -35,23 +34,23 @@ public class ShoutServer extends AllDirectives {
 
         //#server-bootstrapping
         // boot up server using themvn  route as defined below
-        ActorSystem system = ActorSystem.create("shoutServer");
+        ActorSystem system = ActorSystem.create("letsShoutServer");
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         //#server-bootstrapping
 
-        ActorRef userRegistryActor = system.actorOf(ActorRegistry.props(), "actorRegistry");
+        ActorRef actorRef = system.actorOf(ActorRegistry.props(), "actorRegistry");
 
         //#http-server
         //In order to access all directives we need an instance where the routes are define.
-        ShoutServer app = new ShoutServer(system, userRegistryActor, new TwitterClient());
+        LetsShoutServer app = new LetsShoutServer(system, actorRef);
 
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = app.createRoute().flow(system, materializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(routeFlow,
                 ConnectHttp.toHost("localhost", 8080), materializer);
 
-        System.out.println("ShoutServer online at http://localhost:8080/\nPress RETURN to stop...");
+        System.out.println("LetsShoutServer online at http://localhost:8080/\nPress RETURN to stop...");
         System.in.read(); // let it run until user presses return
 
         binding
@@ -67,7 +66,7 @@ public class ShoutServer extends AllDirectives {
      * Note that routes might be defined in separated classes like the current case
      */
     protected Route createRoute() {
-        return shoutServerRoutes.routes();
+        return letsShoutServerRoutes.routes();
     }
 }
 //#main-class

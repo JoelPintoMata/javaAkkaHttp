@@ -46,14 +46,14 @@ public interface MessageRegistry {
         }
 
         public void SearchTweets() {
-            ResponseList<Status> status;
+            ResponseList<Status> responseList;
 
             results = new ArrayList<>(n);
             int n_processed=0;
             do {
-                status = twitterClientCache.get(username, n);
-                for (int i = 0; i < status.size() && n_processed < n; i++) {
-                    results.add(status.get(i).getText());
+                responseList = twitterClientCache.get(username, n);
+                for (int i = 0; i < responseList.size() && n_processed < n; i++) {
+                    results.add(responseList.get(i).getText());
                     n_processed++;
                 }
             } while (n_processed < n);
@@ -62,15 +62,10 @@ public interface MessageRegistry {
         /**
          * Formats a tweet message
          * (upper case + "!")
-         * @param s a tweet message
-         * @return a formatted tweet message
+         * @return shouts a list of tweets
          */
-        private String format(String s) {
-            return s.toUpperCase() + "!";
-        }
-
         public List<String> getResults() {
-            return this.results.stream().map(x -> format(x)).collect(Collectors.toList());
+            return this.results.stream().map(x -> x.toUpperCase() + "!").collect(Collectors.toList());
         }
 
         public void setResults(List<String> result) {
